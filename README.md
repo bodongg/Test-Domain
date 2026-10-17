@@ -23,3 +23,21 @@ npm test
 ```
 
 This checks hostname syntax only. It does not query DNS or confirm that a site exists.
+
+## Command line
+
+```sh
+node src/cli.js 'https://WWW.Example.com/path'
+# www.example.com
+```
+
+The command exits with status 1 and prints an error for invalid input.
+
+For scripts, add `--json` before the input:
+
+```sh
+node src/cli.js --json 'https://WWW.Example.com/path'
+# {"input":"https://WWW.Example.com/path","hostname":"www.example.com","valid":true}
+```
+
+Invalid input also produces JSON with `valid: false` and an `error` message, while keeping exit status 1.
